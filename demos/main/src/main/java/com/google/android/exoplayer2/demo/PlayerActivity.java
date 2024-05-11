@@ -17,8 +17,10 @@ package com.google.android.exoplayer2.demo;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
@@ -32,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.MediaMetadata;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
@@ -54,6 +57,7 @@ import com.google.android.exoplayer2.util.DebugTextViewHelper;
 import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.EventLogger;
 import com.google.android.exoplayer2.util.Util;
+import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -341,6 +345,26 @@ public class PlayerActivity extends AppCompatActivity
   private List<MediaItem> createMediaItems(Intent intent) {
     String action = intent.getAction();
     boolean actionIsListView = IntentUtil.ACTION_VIEW_LIST.equals(action);
+
+    if (IntentUtil.ACTION_PLAY.equals(action)) {
+      List<MediaItem> mediaItems = new ArrayList<>();
+      Log.d("mxp", "current intent is :" + intent);
+
+      Log.d("mxp", "url :" + intent.getStringExtra("url"));
+
+      Uri uri = intent.getData();//Uri.parse(intent.getStringExtra("url"));
+      Log.d("mxp", "url :" + uri);
+      showToast("try play ...:" + uri);
+      MediaItem mediaItem = new MediaItem.Builder()
+          .setUri(uri)
+          //.setMimeType(MimeTypes.APPLICATION_MP4)
+          .build();
+
+      mediaItems.add(mediaItem);
+
+      return mediaItems;
+    }
+
     if (!actionIsListView && !IntentUtil.ACTION_VIEW.equals(action)) {
       showToast(getString(R.string.unexpected_intent_action, action));
       finish();

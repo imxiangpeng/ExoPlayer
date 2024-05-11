@@ -16,6 +16,7 @@
 package com.google.android.exoplayer2.demo;
 
 import android.content.Context;
+import android.util.Log;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.database.DatabaseProvider;
@@ -93,8 +94,10 @@ public final class DemoUtil {
   }
 
   public static synchronized DataSource.Factory getHttpDataSourceFactory(Context context) {
+    Log.d("mxp", "guess ........... data source .........");
     if (httpDataSourceFactory == null) {
       if (USE_CRONET_FOR_NETWORKING) {
+        Log.d("mxp", "using cronet ........");
         context = context.getApplicationContext();
         @Nullable CronetEngine cronetEngine = CronetUtil.buildCronetEngine(context);
         if (cronetEngine != null) {
@@ -103,6 +106,7 @@ public final class DemoUtil {
         }
       }
       if (httpDataSourceFactory == null) {
+        Log.d("mxp", "not using cronet ........");
         // We don't want to use Cronet, or we failed to instantiate a CronetEngine.
         CookieManager cookieManager = new CookieManager();
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);

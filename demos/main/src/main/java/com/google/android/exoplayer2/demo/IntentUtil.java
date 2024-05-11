@@ -49,6 +49,8 @@ public class IntentUtil {
   // Actions.
 
   public static final String ACTION_VIEW = "com.google.android.exoplayer.demo.action.VIEW";
+  public static final String ACTION_PLAY = "com.google.android.exoplayer.demo.action.PLAY";
+
   public static final String ACTION_VIEW_LIST =
       "com.google.android.exoplayer.demo.action.VIEW_LIST";
 

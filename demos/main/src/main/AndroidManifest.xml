@@ -38,6 +38,7 @@
       android:requestLegacyExternalStorage="true"
       android:supportsRtl="true"
       android:name="androidx.multidex.MultiDexApplication"
+      android:networkSecurityConfig="@xml/network_security_config"
       tools:targetApi="29">
 
     <activity android:name=".SampleChooserActivity"
@@ -80,6 +81,12 @@
         <data android:scheme="asset"/>
         <data android:scheme="file"/>
         <data android:scheme="ssai"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="com.google.android.exoplayer.demo.action.PLAY"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:scheme="http"/>
+        <data android:scheme="https"/>
       </intent-filter>
       <intent-filter>
         <action android:name="com.google.android.exoplayer.demo.action.VIEW"/>
