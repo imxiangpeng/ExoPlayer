@@ -25,7 +25,8 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:show_shuffle_button="true"
-      app:show_subtitle_button="true"/>
+      app:show_subtitle_button="true"
+      app:repeat_toggle_modes="all"/>
 
   <LinearLayout
       android:layout_width="match_parent"

@@ -302,6 +302,8 @@ public class PlayerActivity extends AppCompatActivity
       player.seekTo(startItemIndex, startPosition);
     }
     player.setMediaItems(mediaItems, /* resetPosition= */ !haveStartPosition);
+
+    player.setRepeatMode(Player.REPEAT_MODE_ALL);
     player.prepare();
     updateButtonVisibility();
     return true;
